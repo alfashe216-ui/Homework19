@@ -12,53 +12,40 @@ public class LoginPage {
     private final SelenideElement flashMessage = $("#flash");
     private final SelenideElement logoutButton = $("a.button");
 
-    public LoginPage open() {
+    public void open() {
         Selenide.open("https://the-internet.herokuapp.com/");
         $$("a").findBy(Condition.text("Form Authentication")).click();
-        return this;
     }
 
-    public LoginPage typeUsername(String username) {
+    public void typeUsername(String username) {
         usernameField.setValue(username);
-        return this;
     }
 
-    public LoginPage typePassword(String password) {
+    public void typePassword(String password) {
         passwordField.setValue(password);
-        return this;
     }
 
-    public LoginPage clickLogin() {
+    public void clickLogin() {
         loginButton.click();
-        return this;
     }
 
-    public LoginPage clickLogout() {
+    public void clickLogout() {
         logoutButton.click();
-        return this;
     }
 
-    public LoginPage verifyLoginPageTitle() {
+    public void verifyLoginPageTitle() {
         $("h2").shouldHave(Condition.text("Login Page"));
-        return this;
     }
 
-    public LoginPage verifySuccessMessage(String expectedText) {
-        flashMessage.shouldHave(Condition.text(expectedText));
-        return this;
-    }
-
-    public void verifyErrorMessage(String expectedText) {
+    public void verifySuccessMessage(String expectedText) {
         flashMessage.shouldHave(Condition.text(expectedText));
     }
 
-    public LoginPage verifyLogoutButtonPresent() {
+    public void verifyLogoutButtonPresent() {
         logoutButton.shouldHave(Condition.text("Logout"));
-        return this;
     }
 
-    public LoginPage verifyElementalSeleniumLinkPresent() {
+    public void verifyElementalSeleniumLinkPresent() {
         $("#page-footer").shouldHave(Condition.text("Elemental Selenium"));
-        return this;
     }
 }
