@@ -10,11 +10,24 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:6.0.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'com.codeborne:selenide:7.0.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'io.cucumber:cucumber-java:7.14.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.14.0'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.0'
 }
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// Для запуска через ./gradlew run
+tasks.withType(JavaExec).configureEach {
+    systemProperty 'file.encoding', 'UTF-8'
+    systemProperty 'console.encoding', 'UTF-8'
+    systemProperty 'stdout.encoding', 'UTF-8'
 }
